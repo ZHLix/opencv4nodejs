@@ -1,8 +1,9 @@
-import { OpenCVBuildEnvParams } from '@zhlix/opencv-build'
 import promisify from './promisify'
 import extendWithJsSources from './src'
 import getOpenCV from './cvloader'
 import type * as openCV from '../..'
+import type { OpenCVBuildEnvParams } from '../..'
+
 declare type OpenCVType = typeof openCV
 
 function loadOpenCV(opt?: OpenCVBuildEnvParams): OpenCVType {
