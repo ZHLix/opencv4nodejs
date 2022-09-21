@@ -1,17 +1,17 @@
 import fs from 'fs'
 import path from 'path'
 import { isElectronWebpack, resolvePath } from './commons'
-import pc from 'picocolors'
-import { info } from 'npmlog'
+// import pc from 'picocolors'
+// import { info } from 'npmlog'
 import type * as openCV from '../..'
 import type { OpenCVBuildEnvParams } from '../..'
 declare type OpenCVType = typeof openCV
 
-const logDebug = process.env.OPENCV4NODES_DEBUG_REQUIRE
-  ? info
-  : () => {
-      /* ignore */
-    }
+// const logDebug = process.env.OPENCV4NODES_DEBUG_REQUIRE
+//   ? info
+//   : () => {
+//       /* ignore */
+//     }
 
 // function tryGetOpencvBinDir(builder: OpenCVBuilder) {
 //   if (process.env.OPENCV_BIN_DIR) {
@@ -58,15 +58,15 @@ function getOpenCV(opt?: OpenCVBuildEnvParams): OpenCVType {
     // path.join(__dirname, process.env.BINDINGS_DEBUG ? '../build/Debug/opencv4nodejs' : '../build/Release/opencv4nodejs')
   }
   try {
-    logDebug('require', `require path is ${pc.yellow(requirePath)}`)
+    // logDebug('require', `require path is ${pc.yellow(requirePath)}`)
     opencvBuild = require(requirePath)
   } catch (err: any) {
     // err.code === 'ERR_DLOPEN_FAILED'
-    logDebug('require', `failed to require cv with exception: ${pc.red(err.toString())}`)
-    logDebug('require', 'attempting to add opencv binaries to path')
-
+    // logDebug('require', `failed to require cv with exception: ${pc.red(err.toString())}`)
+    // logDebug('require', 'attempting to add opencv binaries to path')
+    //
     if (!process.env.path) {
-      logDebug('require', 'there is no path environment variable, skipping...')
+      // logDebug('require', 'there is no path environment variable, skipping...')
       throw err
     }
 
@@ -79,7 +79,7 @@ function getOpenCV(opt?: OpenCVBuildEnvParams): OpenCVType {
     // if (!process.env.path.includes(opencvBinDir)) {
     //   process.env.path = `${process.env.path};${opencvBinDir};`
     // }
-    logDebug('require', 'process.env.path: ' + process.env.path)
+    // logDebug('require', 'process.env.path: ' + process.env.path)
     try {
       opencvBuild = require(requirePath)
     } catch (e) {
@@ -87,8 +87,8 @@ function getOpenCV(opt?: OpenCVBuildEnvParams): OpenCVType {
         let msg = ''
         const message = e.message
         if (message.startsWith('Cannot find module')) {
-          msg = `require("${pc.yellow(requirePath)}");
-          Failed with: ${pc.red(message)}, openCV binding not available, reed:
+          msg = `require("${requirePath}");
+          Failed with: ${message}, openCV binding not available, reed:
           build-opencv --help
           And build missing file with:
           npx build-opencv --version 4.5.4 rebuild
@@ -96,14 +96,14 @@ function getOpenCV(opt?: OpenCVBuildEnvParams): OpenCVType {
           PS: a 'npm link' may help
           `
         } else if (message.startsWith('The specified module could not be found.')) {
-          msg = `require("${pc.yellow(requirePath)}");
-          Failed with: ${pc.red(message)}, openCV module looks broken, clean you builds directory and rebuild everything
+          msg = `require("${requirePath}");
+          Failed with: ${message}, openCV module looks broken, clean you builds directory and rebuild everything
           rm -r <path to your build directory>
           npx build-opencv --version 4.5.4 rebuild
           `
         } else {
-          msg = `require("${pc.yellow(requirePath)}");
-          Failed with: ${pc.red(message)}
+          msg = `require("${requirePath}");
+          Failed with: ${message}
           `
         }
         throw Error(msg)
