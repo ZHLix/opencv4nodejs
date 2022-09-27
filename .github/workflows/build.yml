@@ -2,7 +2,7 @@ name: Build OpenCV With NodeJS CI
 
 on:
   push:
-    branches: ['master', 'fork/@u4_opencv-build']
+    branches: ['master']
 
 jobs:
   release:
@@ -40,8 +40,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [14, 16, 17, 18]
-        os: [ubuntu-latest, windows-2019, macos-latest]
+        node-version: [14]
+        os: [windows-latest]
 
     runs-on: ${{ matrix.os }}
     needs: release
