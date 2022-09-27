@@ -17,7 +17,7 @@
 		"libraries": [
 			"<!@(node ./lib/install/getEnv.js OPENCV4NODEJS_LIBRARIES)",
         	# 添加动态链接库地址
-			"-Wl,-rpath,@loader_path/lib"
+			# "-Wl,-rpath,@loader_path/lib"
 		],
 		"sources": [
 			"cc/opencv4nodejs.cc",

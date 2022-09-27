@@ -1,6 +1,6 @@
 {
   "name": "@zhlix/opencv4nodejs",
-  "version": "1.1.0",
+  "version": "4.5.5",
   "author": "zlx",
   "license": "MIT",
   "main": "lib/opencv4nodejs.js",
@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "node-pre-gyp install --fallback-to-build --update-binary --version 4.5.5 --jobs MAX",
-    "package": "rimraf ./build/Release/.deps ./build/Release/obj.target && node-pre-gyp package",
+    "package": "rimraf ./build/Release/.deps ./build/Release/obj.target && node-pre-gyp --target_platform=win32 package",
     "install": "npm run build",
     "prepublishOnly": "rimraf lib && rollup -c"
   },
@@ -33,7 +33,7 @@
     "@types/glob": "^8.0.0",
     "@types/node": "16",
     "@types/npmlog": "^4.1.4",
-    "@zhlix/opencv-build": "^0.2.1",
+    "@zhlix/opencv-build": "https://github.com/ZHLix/opencv-build.git#fork/@u4_opencv-build",
     "glob": "^8.0.3",
     "node-gyp": "^9.1.0",
     "npmlog": "^6.0.2",
