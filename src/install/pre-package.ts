@@ -19,7 +19,7 @@ const getType = (path: string) => {
 
 const main = async () => {
   // win 创建库文件软连接
-  if (process.platform == 'win32') {
+  if (process.platform != 'darwin') {
     const files = glob.sync('{bin,lib}/*', { nodir: true, cwd: baseDir }).map(v => join(baseDir, v))
 
     files.forEach(v => {

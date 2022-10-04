@@ -1,6 +1,6 @@
 {
   "name": "@zhlix/opencv4nodejs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "zlx",
   "license": "MIT",
   "main": "lib/opencv4nodejs.js",
@@ -20,7 +20,7 @@
   "binary": {
     "module_name": "opencv4nodejs",
     "module_path": "build/Release",
-    "host": "http://192.168.68.254:7100/opencv/opencv4nodejs/releases/download/",
+    "host": "https://github.com/ZHLix/opencv4nodejs/releases/download/",
     "remote_path": "v{version}",
     "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{libc}-{arch}.tar.gz"
   },
@@ -32,7 +32,7 @@
     "@types/node": "16",
     "@types/npmlog": "^4.1.4",
     "@types/rimraf": "^3.0.2",
-    "@zhlix/opencv-build": "^4.5.5",
+    "@zhlix/opencv-build": "https://github.com/ZHLix/opencv-build.git#fork/@u4_opencv-build",
     "glob": "^8.0.3",
     "nan": "^2.16.0",
     "native-node-utils": "^0.2.7",
