@@ -1,6 +1,6 @@
 {
   "name": "@zhlix/opencv4nodejs",
-  "version": "4.5.5",
+  "version": "1.0.0",
   "author": "zlx",
   "license": "MIT",
   "main": "lib/opencv4nodejs.js",
