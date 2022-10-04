@@ -44,7 +44,7 @@ jobs:
       fail-fast: false
       matrix:
         node-version: [14, 16, 17, 18]
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [windows-2019, ubuntu-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
     needs: release
@@ -52,6 +52,13 @@ jobs:
     steps:
       - name: Checkout Git Source
         uses: actions/checkout@v3
+
+      # windows msBuild 相关
+      - name: Windows Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+        if: matrix.os == 'windows-2019'
+        with:
+          msbuild-architecture: x64
 
       - name: Work with NodejS
         uses: actions/setup-node@v3
