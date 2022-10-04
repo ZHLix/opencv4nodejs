@@ -13,28 +13,29 @@
   ],
   "scripts": {
     "build": "node-pre-gyp install --fallback-to-build --update-binary --version 4.5.5 --jobs MAX",
-    "package": "rimraf ./build/Release/.deps ./build/Release/obj.target && node-pre-gyp --target_platform=win32 package",
+    "package": "node ./lib/install/pre-package.js && node-pre-gyp package",
     "install": "npm run build",
     "prepublishOnly": "rimraf lib && rollup -c"
   },
   "binary": {
     "module_name": "opencv4nodejs",
     "module_path": "build/Release",
-    "host": "http://192.168.68.254:7100/development/opencv4nodejs/releases/download/",
+    "host": "https://git1hub.com/ZHLix/opencv4nodejs/releases/download/",
     "remote_path": "v{version}",
     "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{libc}-{arch}.tar.gz"
   },
   "dependencies": {
-    "@zhlix/node-pre-gyp": "^1.0.10",
-    "nan": "^2.16.0",
-    "native-node-utils": "^0.2.7"
+    "@zhlix/node-pre-gyp": "^1.0.10"
   },
   "devDependencies": {
     "@types/glob": "^8.0.0",
     "@types/node": "16",
     "@types/npmlog": "^4.1.4",
-    "@zhlix/opencv-build": "https://github.com/ZHLix/opencv-build.git#fork/@u4_opencv-build",
+    "@types/rimraf": "^3.0.2",
+    "@zhlix/opencv-build": "^4.5.5",
     "glob": "^8.0.3",
+    "nan": "^2.16.0",
+    "native-node-utils": "^0.2.7",
     "node-gyp": "^9.1.0",
     "npmlog": "^6.0.2",
     "picocolors": "^1.0.0",

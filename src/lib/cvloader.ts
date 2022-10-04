@@ -116,9 +116,9 @@ function getOpenCV(opt?: OpenCVBuildEnvParams): OpenCVType {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { haarCascades, lbpCascades } = opencvBuild as any
   // @ts-ignore
-  Object.keys(haarCascades).forEach(key => (opencvBuild[key] = resolvePath(path.join(__dirname, 'haarcascades'), haarCascades[key])))
+  Object.keys(haarCascades).forEach(key => (opencvBuild[key] = resolvePath(path.join(__dirname, '../build/Release/etc'), haarCascades[key])))
   // @ts-ignore
-  Object.keys(lbpCascades).forEach(key => (opencvBuild[key] = resolvePath(path.join(__dirname, 'lbpcascades'), lbpCascades[key])))
+  Object.keys(lbpCascades).forEach(key => (opencvBuild[key] = resolvePath(path.join(__dirname, '../build/Release/etc'), lbpCascades[key])))
   return opencvBuild
 }
 

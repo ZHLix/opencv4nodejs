@@ -122,7 +122,7 @@ export function getOPENCV4NODEJS_LIBRARIES(env: OpenCVBuildEnv, libDir: string, 
   const libs = env.isWin
     ? libsFoundInDir.map(lib => resolvePath(lib.libPath))
     : // dynamically link libs if not on windows
-      ['-L' + libDir].concat(libsFoundInDir.map(lib => '-lopencv_' + lib.opencvModule)).concat('-Wl,-rpath,' + libDir)
+      ['-L' + libDir].concat(libsFoundInDir.map(lib => '-lopencv_' + lib.opencvModule)) // .concat('-Wl,-rpath,' + libDir)
 
   if (libs.length > 0) {
     const dir = path.dirname(libs[0])

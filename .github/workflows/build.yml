@@ -2,7 +2,10 @@ name: Build OpenCV With NodeJS CI
 
 on:
   push:
-    branches: ['master']
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    # branches: ['master']
 
 jobs:
   release:
@@ -24,12 +27,24 @@ jobs:
           path: ./package.json
           property: version
 
+      - name: 建立GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        env:
+          # 配置github token （这个无需去github配置，默认存在的）
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # with:
+        #   # 上传URL为建立GitHub Release步骤的输出值，可经过配置的id获取
+        #   # upload_url: ${{ steps.create_release.outputs.upload_url }}
+        #   # 上传文件信息
+        #   tag_name: v${{ needs.release.outputs.version }}
+
   build:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [14]
-        os: [windows-latest]
+        node-version: [14, 16, 17, 18]
+        os: [windows-latest, ubuntu-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
     needs: release
@@ -42,13 +57,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-          key: node-${{ matrix.os }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Dependencies
         run: npm install

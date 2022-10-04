@@ -24,6 +24,7 @@ function getLibDir(env: OpenCVBuildEnv): string {
     return resolvePath(process.env.OPENCV_LIB_DIR) || getDefaultLibDir(env)
   } else {
     const dir = resolvePath(env.opencvLibDir)
+    if (env.isWin) dir.replace(/\/Release$/, '')
     if (!dir) {
       throw Error('failed to resolve opencvLibDir path')
     }
